@@ -1,0 +1,380 @@
+<div class="col-sm-7">
+<mat-horizontal-stepper [linear] = "isLinear" #stepper>
+  <mat-step [stepControl] = "firstFormGroup">
+    <form [formGroup] = "firstFormGroup">
+      <ng-template matStepLabel>DETAILS OF BRIDEGROOM (All Details AT THE TIME OF Marriage)</ng-template>
+
+      <h6><i>KINDLY  USE  CAPITAL  LETTERS TO FILL THE DATA SHEET</i></h6>
+
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="dom" placeholder="DATE OF MARRIAGE">
+        <mat-datepicker-toggle matSuffix [for]="dom"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>&nbsp;&nbsp;&nbsp;/
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1">YET TO DECIDE </mat-radio-button>
+      </mat-radio-group>
+      <br>
+
+      <mat-form-field>
+        <input matInput placeholder = "NAME OF THE GROOM" formControlName = "nameofgroom" required>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "NATIONALITY" formControlName = "nationality" required>
+      </mat-form-field><br>
+
+      <label id="rdstatuslabel">RESIDENTIAL STATUS IN INDIA</label>
+      <mat-radio-group  aria-labelledby="rdstatuslabel"  class="example-radio-group" > &nbsp;&nbsp;&nbsp;
+        <mat-radio-button class="rdstatuslabel" *ngFor="let rdstat of rdstatus" [value]="rdstat"  >
+          {{rdstat}}&nbsp;&nbsp;&nbsp;
+        </mat-radio-button>
+      </mat-radio-group><br><br>
+
+      <mat-form-field>
+        <input type="text" placeholder="RELEGION" aria-label="relegion" matInput [formControl]="relegions" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredrelegions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "CASTE" >
+      </mat-form-field><br>
+
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="dob" placeholder="DATE OF Birth" required>
+        <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>&nbsp;&nbsp;&nbsp;
+      <mat-form-field>
+        <input matInput placeholder = "AGE">
+      </mat-form-field><label id="agelabel">Years &nbsp;(AS ON DATE OF MARRIAGE)</label>
+
+
+      <mat-divider></mat-divider>
+      <label id="occupation"><h5>OCCUPATION</h5></label>
+
+      <mat-form-field>
+        <input matInput placeholder = "NAME OF THE EMPLOYER" formControlName = "nameofemployer" required>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "DESIGNATION" formControlName = "designation" required>
+      </mat-form-field><br>
+
+
+      <mat-form-field>
+        <input type="text" placeholder="MARTIAL STATUS BEFORE MARRIAGE" aria-label="martialtatus" matInput [formControl]="martialstatus" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let values of filteredmartialstatus | async" [value]="values">
+            {{values}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "MOBILE NO" formControlName = "mobileno" required>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "WHATSAPP NO" >
+      </mat-form-field><br>
+
+
+      <mat-form-field>
+        <input matInput placeholder="Enter your email" [formControl]="bemail" required>
+        <mat-error *ngIf="bemail.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <textarea matInput placeholder="RESI. ADDRESS"></textarea>
+      </mat-form-field>&nbsp;&nbsp;&nbsp;
+      <mat-form-field>
+        <input matInput placeholder = "PINCODE:" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "PASSPORT NO:" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "FATHER’S NAME" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "FATHER'S RELIGION" >
+      </mat-form-field><br><br>
+
+      <label>LIVING STATUS</label>
+      <mat-radio-group  aria-labelledby="LIVING STATUS" > &nbsp;&nbsp;&nbsp;
+        <mat-radio-button class="livingstatus" *ngFor="let livingstat of livingstatus" [value]="livingstat"  >
+          {{livingstat}}&nbsp;&nbsp;&nbsp;
+        </mat-radio-button>
+      </mat-radio-group><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "FATHER’S AGE" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "FATHER’S OCCUPATION" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <textarea matInput placeholder="FATHER’S ADDRESS"></textarea>
+      </mat-form-field><br><br>
+
+
+
+      <mat-form-field>
+        <input matInput placeholder = "MOTHER’S NAME" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "MOTHER'S RELIGION" >
+      </mat-form-field><br><br>
+
+      <label>LIVING STATUS</label>
+      <mat-radio-group  aria-labelledby="LIVING STATUS" > &nbsp;&nbsp;&nbsp;
+        <mat-radio-button class="livingstatus" *ngFor="let livingstat of livingstatus" [value]="livingstat"  >
+          {{livingstat}}&nbsp;&nbsp;&nbsp;
+        </mat-radio-button>
+      </mat-radio-group><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "MOTHER’S AGE" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "MOTHER’S OCCUPATION" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <textarea matInput placeholder="MOTHERS’S ADDRESS"></textarea>
+      </mat-form-field><br><br>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+
+
+  <mat-step [stepControl] = "secondFormGroup">
+    <form [formGroup] = "secondFormGroup">
+      <ng-template matStepLabel>DETAILS OF BRIDE (ALL DETAILS AT THE TIME OF MARRIAGE)</ng-template>
+
+      <h6><i>KINDLY  USE  CAPITAL  LETTERS TO FILL THE DATA SHEET</i></h6>
+
+
+      <mat-form-field>
+        <input matInput placeholder = "NAME OF THE BRIDE" formControlName = "nameofbride" required>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "NATIONALITY" formControlName = "bnationality" required>
+      </mat-form-field><br>
+
+      <label id="brdstatuslabel">RESIDENTIAL STATUS IN INDIA</label>
+      <mat-radio-group  aria-labelledby="rdstatuslabel"  class="example-radio-group" > &nbsp;&nbsp;&nbsp;
+        <mat-radio-button class="rdstatuslabel" *ngFor="let rdstat of rdstatus" [value]="rdstat"  >
+          {{rdstat}}&nbsp;&nbsp;&nbsp;
+        </mat-radio-button>
+      </mat-radio-group><br><br>
+
+      <mat-form-field>
+        <input type="text" placeholder="RELEGION" aria-label="relegion" matInput [formControl]="relegions" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredrelegions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "CASTE" >
+      </mat-form-field><br>
+
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="dob" placeholder="DATE OF Birth" required>
+        <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>&nbsp;&nbsp;&nbsp;
+      <mat-form-field>
+        <input matInput placeholder = "AGE">
+      </mat-form-field><label id="agelabel">Years &nbsp;(AS ON DATE OF MARRIAGE)</label>
+
+
+      <mat-divider></mat-divider>
+      <label id="occupation"><h5>OCCUPATION</h5></label>
+
+      <mat-form-field>
+        <input matInput placeholder = "NAME OF THE EMPLOYER" formControlName = "bnameofemployer" required>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "DESIGNATION" formControlName = "bdesignation" required>
+      </mat-form-field><br>
+
+
+      <mat-form-field>
+        <input type="text" placeholder="MARTIAL STATUS BEFORE MARRIAGE" aria-label="martialtatus" matInput [formControl]="martialstatus" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let values of filteredmartialstatus | async" [value]="values">
+            {{values}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "MOBILE NO" formControlName = "bmobileno" required>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "WHATSAPP NO" >
+      </mat-form-field><br>
+
+
+      <mat-form-field>
+        <input matInput placeholder="Enter your email" [formControl]="bemail" required>
+        <mat-error *ngIf="bemail.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <textarea matInput placeholder="RESI. ADDRESS"></textarea>
+      </mat-form-field>&nbsp;&nbsp;&nbsp;
+      <mat-form-field>
+        <input matInput placeholder = "PINCODE:" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "PASSPORT NO:" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "FATHER’S NAME" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "FATHER'S RELIGION" >
+      </mat-form-field><br><br>
+
+      <label>LIVING STATUS</label>
+      <mat-radio-group  aria-labelledby="LIVING STATUS" > &nbsp;&nbsp;&nbsp;
+        <mat-radio-button class="livingstatus" *ngFor="let livingstat of livingstatus" [value]="livingstat"  >
+          {{livingstat}}&nbsp;&nbsp;&nbsp;
+        </mat-radio-button>
+      </mat-radio-group><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "FATHER’S AGE" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "FATHER’S OCCUPATION" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <textarea matInput placeholder="FATHER’S ADDRESS"></textarea>
+      </mat-form-field><br><br>
+
+
+
+      <mat-form-field>
+        <input matInput placeholder = "MOTHER’S NAME" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "MOTHER'S RELIGION" >
+      </mat-form-field><br><br>
+
+      <label>LIVING STATUS</label>
+      <mat-radio-group  aria-labelledby="LIVING STATUS" > &nbsp;&nbsp;&nbsp;
+        <mat-radio-button class="livingstatus" *ngFor="let livingstat of livingstatus" [value]="livingstat"  >
+          {{livingstat}}&nbsp;&nbsp;&nbsp;
+        </mat-radio-button>
+      </mat-radio-group><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "MOTHER’S AGE" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "MOTHER’S OCCUPATION" >
+      </mat-form-field><br><br>
+
+      <mat-form-field>
+        <textarea matInput placeholder="MOTHERS’S ADDRESS"></textarea>
+      </mat-form-field><br><br>
+
+
+      <mat-divider></mat-divider><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "PLACE OF MARRIAGE">
+        <mat-hint>(MARRIAGE HALL/ TEMPLE NAME, FULL ADDRESS)</mat-hint>
+      </mat-form-field><br><br><br><br>
+
+      <mat-form-field>
+      <input matInput [matDatepicker]="cdm" placeholder="CONVENIENT DATE FOR MARRIAGE REGISTRATION">
+      <mat-datepicker-toggle matSuffix [for]="cdm"></mat-datepicker-toggle>
+      <mat-datepicker #cdm></mat-datepicker>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+  <mat-step [stepControl] = "thirdFormGroup">
+    <form [formGroup] = "thirdFormGroup">
+    <ng-template matStepLabel>Done</ng-template>
+      <h6><i>KINDLY  USE  CAPITAL  LETTERS TO FILL THE DATA SHEET</i></h6>
+
+    <label>PARENTS PHYSICAL PRESENCE STATUS TO SUB-REGISTRAR OFFICE, AT THE TIME OF REGISTRATION:</label><br><br>
+
+      <label >BRIDEGROOM FATHER</label>
+      <mat-radio-group  aria-labelledby="rdstatuslabel"  class="example-radio-group" > &nbsp;&nbsp;&nbsp;
+        <mat-radio-button class="rdstatuslabel" *ngFor="let bridegroomfathers of bridegrromfather" [value]="bridegroomfathers"  >
+          {{bridegroomfathers}}&nbsp;&nbsp;&nbsp;
+        </mat-radio-button>
+      </mat-radio-group><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "Reason" >
+      </mat-form-field><br><br>
+
+
+
+      <label >BRIDEGROOM MOTHER</label>
+      <mat-radio-group  aria-labelledby="rdstatuslabel"  class="example-radio-group" > &nbsp;&nbsp;&nbsp;
+        <mat-radio-button class="rdstatuslabel" *ngFor="let bridegroomfathers of bridegrromfather" [value]="bridegroomfathers"  >
+          {{bridegroomfathers}}&nbsp;&nbsp;&nbsp;
+        </mat-radio-button>
+      </mat-radio-group><br><br>
+
+      <mat-form-field>
+        <input matInput placeholder = "Reason" >
+      </mat-form-field><br><br>
+
+
+
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click) = "stepper.reset()">Reset</button>
+    </div>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>
+</div>
